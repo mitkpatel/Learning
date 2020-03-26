@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Equipment</string>
+    <string name="login_activity">Login</string>
+    <string name="registration_activity">Registration</string>
+    <string name="product_list_activity">Product  List</string>
+    <string name="forgot_password_activity">Forgot Password</string>
+    <string name="alert_connect_internet">Please Connect to Internet First</string>
+    <string name="dialog_exit">Are you sure you want to exit?</string>
+    <string name="exit_dialog">Exit</string>
+    <string name="dialog_logout_confirm">Are you sure want to logout ?</string>
+    <string name="dialog_yes">Yes</string>
+    <string name="dialog_no">No</string>
+    <string name="alert_enter_username">Please Enter Username</string>
+    <string name="alert_enter_password">Please Enter Password</string>
+    <string name="alert_select_database_first">Please Enter Database Name</string>
+    <string name="progress_msg">Loading...</string>
+    <string name="error_volley">Error Fetching Data!!! Please Try Again.</string>
+    <string name="toast_all_permission_req_to_start">All Permissions Required to Start Application.</string>
+    \
+</resources>
