@@ -1,43 +1,39 @@
 package com.example.equipments.product;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.equipments.R;
 import com.example.equipments.base.BaseActivity;
 import com.example.equipments.login.LoginActivity;
-import com.example.equipments.login.RegistrationActivity;
 
 import org.honorato.multistatetogglebutton.ToggleButton;
 import org.json.JSONArray;
-
-import java.util.ArrayList;
-import java.util.Arrays;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class ProductListActivity extends BaseActivity implements MyRecyclerViewAdapter.ItemClickListener {
+public class ProductListActivity extends BaseActivity implements ProductListRecyclerViewAdapter.ItemClickListener {
 
     EditText etSearchProduct;
-    ImageView ivSearchProduct;
-    MyRecyclerViewAdapter adapter;
+    ImageView ivSearchProduct,ivBackButton;
+    ProductListRecyclerViewAdapter adapter;
     ToggleButton toggleButton;
+    ImageButton btn;
 
-    String[] data = {"Product Name:1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
+    JSONArray jsonArray;
+    String[] data = new String[BaseActivity.sampleTestingLimit] ;
+
     int[] product_images = {R.drawable.infra_bazaar_backhoe,R.drawable.infra_bazaar_crane,R.drawable.infra_bazaar_excavator,R.drawable.infra_bazaar_motorgrader,
             R.drawable.infra_bazaar_roller,R.drawable.infra_bazaar_tipper,R.drawable.infra_bazaar_transitmixer,R.drawable.infra_bazaar_used};
 
-    ImageButton btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,8 +41,15 @@ public class ProductListActivity extends BaseActivity implements MyRecyclerViewA
 
         etSearchProduct = (EditText)findViewById(R.id.etSearchProduct);
         ivSearchProduct = (ImageView)findViewById(R.id.ivSearchProduct);
-
+        ivBackButton = (ImageView)findViewById(R.id.ivBackActivity);
       //  toggleButton = (ToggleButton)
+
+        ivBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openActivity(ProductListActivity.this, LoginActivity.class);
+            }
+        });
 
         ActionBar actionBar = getSupportActionBar();  //To create custom ActionBar with drawable
         if (actionBar != null) {
@@ -57,6 +60,15 @@ public class ProductListActivity extends BaseActivity implements MyRecyclerViewA
             actionBar.setHomeAsUpIndicator(R.drawable.ic_back_arrow);
         }
 
+        for(int i=0; i<data.length;i++) {
+            data[i] = String.valueOf(i);
+            DisplayProduct(data);
+        }
+    }
+
+    private void DisplayProduct(String[] i) {
+
+        // Starting of RecycleView
         RecyclerView.LayoutManager layoutManager;
 
         // set up the RecyclerView
@@ -67,7 +79,7 @@ public class ProductListActivity extends BaseActivity implements MyRecyclerViewA
         layoutManager = new GridLayoutManager(this, numberOfColumns);
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new MyRecyclerViewAdapter(this , data);
+        adapter = new ProductListRecyclerViewAdapter(this , data);
         adapter.setClickListener(ProductListActivity.this);
 
         recyclerView.setAdapter(adapter);

@@ -3,112 +3,170 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/background"
-    android:paddingLeft="20dp"
-    android:paddingTop="20dp"
-    android:paddingRight="20dp"
-    android:paddingBottom="100dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".login.RegistrationActivity">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/ivRegistrationLogo"
-            android:layout_centerHorizontal="true"
-            android:src="@drawable/registration_icon"
-            />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <LinearLayout
+            android:id="@+id/actionBar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:background="@drawable/login_corner_background"
-            android:layout_below="@+id/ivRegistrationLogo"
-            android:layout_marginTop="-20dp"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-            <TextView
+            <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_marginTop="30dp"
-                android:text="Registration"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="35sp" />
+                android:gravity="right"
+                tools:ignore="MissingConstraints"
+                android:theme="@style/AppTheme.PopupOverlay">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="10dp">
-
-                <EditText
-                    android:id="@+id/etUsernameRegister"
+                <androidx.appcompat.widget.Toolbar
+                    android:layout_gravity="right"
+                    android:gravity="right"
+                    android:id="@+id/toolbar_target_ranges"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_user"
-                    android:hint="UserName"
-                    android:maxLines="1"
-                    android:inputType="text"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textColorHint="#000"
-                    android:drawablePadding="10dp"
-                    android:textColorHighlight="#000"/>
-            </LinearLayout>
+                    android:layout_height="?attr/actionBarSize"
+                    android:theme="@style/AppTheme.PopupOverlay" >
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="10dp">
+                    <LinearLayout
+                        android:id="@+id/LeftOrientationActionbar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/etPasswordRegister"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/password"
-                    android:hint="Password"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textColorHint="#000"
-                    android:inputType="textPassword"
-                    android:drawablePadding="10dp"
-                    android:textColorHighlight="#000"/>
-            </LinearLayout>
+                        <ImageView
+                            android:id="@+id/ivBackRegistration"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_back_arrow" />
 
-            <CheckBox
-                android:id="@+id/tvVendor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="20dp"
-                android:text="Apply for becoming a vendor"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/colorPrimaryDark"
-                android:textStyle="bold" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/forgot_password_activity"
+                            android:layout_gravity="center"
+                            android:textColor="@color/white"
+                            android:textSize="20dp"/>
 
-            <Button
-                android:id="@+id/btnRegistration"
-                android:layout_width="150dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="40dp"
-                android:textSize="19dp"
-                android:textColor="#fff"
-                android:textAllCaps="false"
-                android:background="@drawable/button_background"
-                android:paddingLeft="5dp"
-                android:text="Registration" />
-
+                    </LinearLayout>
+                </androidx.appcompat.widget.Toolbar>
+            </com.google.android.material.appbar.AppBarLayout>
         </LinearLayout>
 
-    </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/actionBar"
+            android:background="@color/background"
+            android:paddingLeft="20dp"
+            android:paddingTop="20dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="100dp"
+            android:layout_centerHorizontal="true">
 
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ivRegistrationLogo"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/registration_icon"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/login_corner_shape"
+                android:layout_below="@+id/ivRegistrationLogo"
+                android:layout_marginTop="-20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="30dp"
+                    android:text="Registration"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="35sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <EditText
+                        android:id="@+id/etUsernameRegister"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_user"
+                        android:hint="UserName"
+                        android:maxLines="1"
+                        android:inputType="text"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textColorHint="#000"
+                        android:drawablePadding="10dp"
+                        android:textColorHighlight="#000"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <EditText
+                        android:id="@+id/etPasswordRegister"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/password"
+                        android:hint="Password"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textColorHint="#000"
+                        android:inputType="textPassword"
+                        android:drawablePadding="10dp"
+                        android:textColorHighlight="#000"/>
+                </LinearLayout>
+
+                <CheckBox
+                    android:id="@+id/tvVendor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="Apply for becoming a vendor"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btnRegistration"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="40dp"
+                    android:textSize="19dp"
+                    android:textColor="#fff"
+                    android:textAllCaps="false"
+                    android:background="@drawable/login_button_background"
+                    android:paddingLeft="5dp"
+                    android:text="Registration" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>

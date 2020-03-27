@@ -5,26 +5,33 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.example.equipments.R;
-import com.example.equipments.product.MyRecyclerViewAdapter;
+import com.example.equipments.product.ProductListRecyclerViewAdapter;
 
 import org.json.JSONObject;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class BaseActivity extends AppCompatActivity implements Constant {
 
+    public static int sampleTestingLimit = 200;
     Toolbar toolbar;
     public static AlertDialog progressDialog;
     protected SharedPreferences sharedPreferences;
@@ -39,7 +46,7 @@ public class BaseActivity extends AppCompatActivity implements Constant {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+    //    RecycleViewAdapter();
     }
 
 
@@ -59,6 +66,7 @@ public class BaseActivity extends AppCompatActivity implements Constant {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        overridePendingTransition(R.anim.enter_from_left, R.anim.exit_in_right);
         closeActivityWithAnimation();
     }
 

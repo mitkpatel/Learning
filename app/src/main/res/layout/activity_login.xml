@@ -11,6 +11,10 @@
     android:paddingBottom="100dp"
     tools:context=".login.LoginActivity">
 
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:background="@drawable/login_corner_background"
+            android:background="@drawable/login_corner_shape"
             android:layout_below="@+id/ivLoginLogo"
             android:layout_marginTop="-20dp"
             android:orientation="vertical">
@@ -104,7 +108,7 @@
                 android:textSize="19dp"
                 android:textColor="#fff"
                 android:textAllCaps="false"
-                android:background="@drawable/button_background"
+                android:background="@drawable/login_button_background"
                 android:paddingLeft="5dp"
                 android:text="Sign in" />
 
@@ -119,8 +123,9 @@
                 android:textSize="20dp"
                 android:layout_marginBottom="20dp"/>
 
-        </LinearLayout>
+          </LinearLayout>
 
-    </RelativeLayout>
+        </RelativeLayout>
 
+    </androidx.core.widget.NestedScrollView>
 </RelativeLayout>

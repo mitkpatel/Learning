@@ -18,14 +18,35 @@ public class RegistrationActivity extends BaseActivity {
 
     Button btnRegister;
     EditText etUsername, etPassword;
-    ImageView ivRegisterLogo;
+    ImageView ivRegisterLogo,ivCloseActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
+        btnRegister = (Button) findViewById(R.id.btnRegistration);
+        etPassword = (EditText) findViewById(R.id.etPasswordRegister);
+        etUsername = (EditText) findViewById(R.id.etUsernameRegister);
+        ivRegisterLogo = (ImageView)findViewById(R.id.ivRegistrationLogo);
+        ivCloseActivity = (ImageView)findViewById(R.id.ivBackRegistration);
 
+        ivRegisterLogo.bringToFront();  //To overlap Image on to another View
+
+        // For BackPress on Drawable Toolbar
+        ivCloseActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openActivity(RegistrationActivity.this,LoginActivity.class);
+            }
+        });
+
+      //  onBackPressed();
+    }
+}
+
+
+/*     // for Default ActionBar
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
@@ -34,15 +55,4 @@ public class RegistrationActivity extends BaseActivity {
             actionBar.setDisplayUseLogoEnabled(false);
             actionBar.setHomeAsUpIndicator(R.drawable.ic_back_arrow);
         }
-
-
-        btnRegister = (Button) findViewById(R.id.btnRegistration);
-        etPassword = (EditText) findViewById(R.id.etPasswordRegister);
-        etUsername = (EditText) findViewById(R.id.etUsernameRegister);
-        ivRegisterLogo = (ImageView)findViewById(R.id.ivRegistrationLogo);
-
-        ivRegisterLogo.bringToFront();  //To overlap Image on to another View
-
-      //  onBackPressed();
-    }
-}
+*/
