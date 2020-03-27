@@ -27,7 +27,7 @@ public class SplashActivity extends BaseActivity {
 
     public void callNextActivity() {
         callGC();
-        String session_id = getSharedPreferencesValue(PREF_SESSION_ID);
+       // String session_id = getSharedPreferencesValue(PREF_SESSION_ID);
         if (session_id.length() > 0) {
             new Handler().postDelayed(new Runnable() {
                 @Override

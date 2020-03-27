@@ -9,6 +9,8 @@ public interface Constant {
     String URL_READ_GROUP = "/web/dataset/read_group";
     String URL_WRITE = "/web/dataset/call_kw";
 
+    String PREF_LANGUAGE = "Language";
+    String PREF_MY_LANGUAGE = "MyLanguage";
     String PREF_SESSION_ID = "SessionId";
     String PREF_SESSION_OBJ = "SessionObj";
     String PREF_DB_NAME = "DbName";

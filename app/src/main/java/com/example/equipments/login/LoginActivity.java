@@ -4,7 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,9 +21,11 @@ import com.example.equipments.R;
 import com.example.equipments.base.BaseActivity;
 import com.example.equipments.product.ProductListActivity;
 
+import java.util.Locale;
+
 public class LoginActivity extends BaseActivity {
 
-    Button btnLogin;
+    Button btnLogin,btnChangeLanguage;
     EditText etUsername, etPassword;
     ImageView ivLoginLogo;
     TextView tvCreateAccount,tvForgotPassword,tvToolbarTitle;
@@ -26,6 +33,7 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        loadLanguage();
         setContentView(R.layout.activity_login);
 
         btnLogin = (Button) findViewById(R.id.btnLogin);
@@ -34,6 +42,8 @@ public class LoginActivity extends BaseActivity {
         ivLoginLogo = (ImageView)findViewById(R.id.ivLoginLogo);
         tvCreateAccount = (TextView)findViewById(R.id.tvCreateAccount);
         tvForgotPassword = (TextView)findViewById(R.id.tvForgotPassword);
+        btnChangeLanguage = (Button) findViewById(R.id.btnChangeLanguage);
+
        // tvToolbarTitle = (TextView)findViewById(R.id.tv_toolbar_title);
        // Toolbar toolbarTop = (Toolbar) findViewById(R.id.toolbar);
     //    TextView mTitle = (TextView) toolbarTop.findViewById(R.id.toolbar_title);
@@ -65,5 +75,12 @@ public class LoginActivity extends BaseActivity {
             }
         });
 
+        btnChangeLanguage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showChangeLanguageDialog();
+            }
+        });
     }
+
 }

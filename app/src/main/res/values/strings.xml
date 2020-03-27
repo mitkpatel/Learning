@@ -2,7 +2,7 @@
     <string name="app_name">Equipment</string>
     <string name="login_activity">Login</string>
     <string name="registration_activity">Registration</string>
-    <string name="product_list_activity">Product  List</string>
+    <string name="product_list_activity">Product List</string>
     <string name="forgot_password_activity">Forgot Password</string>
     <string name="alert_connect_internet">Please Connect to Internet First</string>
     <string name="dialog_exit">Are you sure you want to exit?</string>
@@ -12,9 +12,19 @@
     <string name="dialog_no">No</string>
     <string name="alert_enter_username">Please Enter Username</string>
     <string name="alert_enter_password">Please Enter Password</string>
-    <string name="alert_select_database_first">Please Enter Database Name</string>
     <string name="progress_msg">Loading...</string>
     <string name="error_volley">Error Fetching Data!!! Please Try Again.</string>
     <string name="toast_all_permission_req_to_start">All Permissions Required to Start Application.</string>
-    \
+    <string name="password">Password</string>
+    <string name="forgot_password_intent">Forgot Password?</string>
+    <string name="create_account">create account?</string>
+    <string name="sign_in">Sign in</string>
+    <string name="username">Username</string>
+    <string name="change_language">Change Language</string>
+    <string name="apply_for_vendor">Apply for becoming a vendor</string>
+    <string name="search_product">Search</string>
+    <string name="email_id_forgot_password">Please Enter Your Registered Email Id</string>
+    <string name="email_send_on">We will send to Verification Code Your Email Id</string>
+    <string name="e_mail">E-mail</string>
+    <string name="send">Send</string>
 </resources>

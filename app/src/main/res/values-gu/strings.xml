@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Equipment</string>
+    <string name="login_activity">પ્રવેશ કરો</string>
+    <string name="registration_activity">નોંધણી</string>
+    <string name="product_list_activity">ઉત્પાદન સૂચિ</string>
+    <string name="forgot_password_activity">પાસવર્ડ ભૂલી ગયા છો</string>
+    <string name="exit_dialog">Exit</string>
+    <string name="dialog_logout_confirm">શું તમે ખરેખર લૉગઆઉટ કરવા માંગો છો?</string>
+    <string name="dialog_yes">હા</string>
+    <string name="dialog_no">ના</string>
+    <string name="alert_enter_username">કૃપા કરીને વપરાશકર્તા નામ દાખલ કરો</string>
+    <string name="alert_enter_password">કૃપા કરીને પાસવર્ડ દાખલ કરો</string>
+    <string name="progress_msg">લોડ કરી રહ્યું છે ...</string>
+    <string name="error_volley">ડેટા લાવવામાં ભૂલ! મેહરબાની કરી ને ફરી થી પ્રયાસ કરો.</string>
+    <string name="toast_all_permission_req_to_start">એપ્લિકેશન પ્રારંભ કરવા માટે બધી મંજૂરીઓ જરૂરી છે.</string>
+    <string name="alert_connect_internet">કૃપા કરીને પહેલા ઇન્ટરનેટથી કનેક્ટ કરો</string>
+    <string name="dialog_exit">શું તમે ખરેખર બહાર નીકળવા માંગો છો?</string>
+    <string name="password">પાસવર્ડ</string>
+    <string name="forgot_password_intent">પાસવર્ડ ભૂલી ગયા છો?</string>
+    <string name="create_account">એકાઉન્ટ બનાવવા માંગો છો?</string>
+    <string name="sign_in">સાઇન ઇન કરો</string>
+    <string name="username">વપરાશકર્તા નામ</string>
+    <string name="change_language">ભાષા બદલો</string>
+    <string name="apply_for_vendor">વિક્રેતા બનવા માટે અરજી કરો</string>
+    <string name="search_product">શોધો</string>
+    <string name="email_id_forgot_password">કૃપા કરીને તમારી નોંધાયેલ ઇમેઇલ આઈડી દાખલ કરો</string>
+    <string name="email_send_on">અમે ચકાસણી કોડને તમારી ઇમેઇલ આઈડી પર મોકલીશું</string>
+    <string name="e_mail">ઇ-મેઇલ</string>
+    <string name="send">મોકલો</string>
+</resources>

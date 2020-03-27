@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Equipment</string>
+    <string name="login_activity">लॉग इन करें</string>
+    <string name="registration_activity">पंजीकरण</string>
+    <string name="product_list_activity">उत्पाद सूची</string>
+    <string name="forgot_password_activity">पासवर्ड भूल गए?</string>
+    <string name="exit_dialog">निकास</string>
+    <string name="dialog_logout_confirm">क्या आप लॉग आउट करना चाहते हैं ?</string>
+    <string name="dialog_yes">हाँ</string>
+    <string name="dialog_no">नहीं</string>
+    <string name="alert_enter_username">कृपया उपयोगकर्ता नाम दर्ज करें</string>
+    <string name="alert_enter_password">कृप्या पास्वर्ड भरो</string>
+    <string name="progress_msg">लोड हो रहा है...</string>
+    <string name="error_volley">डेटा प्राप्त करने में त्रुटि !!! कृपया पुन: प्रयास करें।</string>
+    <string name="toast_all_permission_req_to_start">आवेदन शुरू करने के लिए आवश्यक सभी अनुमतियां</string>
+    <string name="alert_connect_internet">पहले इंटरनेट से कनेक्ट करें</string>
+    <string name="dialog_exit">क्या आप वाकई बाहर निकलना चाहते हैं?</string>
+    <string name="password">पासवर्ड</string>
+    <string name="forgot_password_intent">पासवर्ड भूल गए?</string>
+    <string name="create_account">खाता बनाना चाहते हैं?</string>
+    <string name="sign_in">साइन इन करें</string>
+    <string name="username">उपयोगकर्ता नाम</string>
+    <string name="change_language">भाषा बदलो</string>
+    <string name="apply_for_vendor">वेंडर बनने के लिए आवेदन करें</string>
+    <string name="search_product">खोज</string>
+    <string name="email_id_forgot_password">कृपया अपना पंजीकृत ईमेल आईडी दर्ज करें</string>
+    <string name="email_send_on">हम सत्यापन कोड आपकी ईमेल आईडी पर भेज देंगे</string>
+    <string name="e_mail">ई-मेल</string>
+    <string name="send">भेजें</string>
+</resources>

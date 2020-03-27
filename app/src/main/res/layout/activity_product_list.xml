@@ -118,7 +118,7 @@
             android:textColor="@color/colorPrimaryDark"
             android:background="@null"
             android:layout_marginLeft="10dp"
-            android:hint="Search" />
+            android:hint="@string/search_product" />
 
         <View
             android:layout_width="4dp"

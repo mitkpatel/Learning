@@ -51,7 +51,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/forgot_password_activity"
+                            android:text="@string/registration_activity"
                             android:layout_gravity="center"
                             android:textColor="@color/white"
                             android:textSize="20dp"/>
@@ -94,7 +94,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:layout_marginTop="30dp"
-                    android:text="Registration"
+                    android:text="@string/registration_activity"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="35sp" />
 
@@ -109,7 +109,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableLeft="@drawable/ic_user"
-                        android:hint="UserName"
+                        android:hint="@string/username"
                         android:maxLines="1"
                         android:inputType="text"
                         android:textColor="@color/colorPrimaryDark"
@@ -129,7 +129,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableLeft="@drawable/password"
-                        android:hint="Password"
+                        android:hint="@string/password"
                         android:textColor="@color/colorPrimaryDark"
                         android:textColorHint="#000"
                         android:inputType="textPassword"
@@ -144,7 +144,7 @@
                     android:layout_gravity="left"
                     android:layout_marginTop="20dp"
                     android:layout_marginLeft="20dp"
-                    android:text="Apply for becoming a vendor"
+                    android:text="@string/apply_for_vendor"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/colorPrimaryDark"
                     android:textStyle="bold" />
@@ -161,7 +161,7 @@
                     android:textAllCaps="false"
                     android:background="@drawable/login_button_background"
                     android:paddingLeft="5dp"
-                    android:text="Registration" />
+                    android:text="@string/registration_activity" />
 
             </LinearLayout>
 
