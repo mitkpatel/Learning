@@ -1,53 +1,46 @@
 package com.example.equipments.product;
 
+import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.TextView;
 
-import com.example.equipments.R;
-import com.example.equipments.base.BaseActivity;
-import com.example.equipments.login.LoginActivity;
-
-import org.honorato.multistatetogglebutton.ToggleButton;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class ProductListActivity extends BaseActivity implements ProductListRecyclerViewAdapter.ItemClickListener {
+import com.example.equipments.R;
+import com.example.equipments.base.BaseActivity;
+
+public class ProductListActivity extends BaseActivity {
 
     EditText etSearchProduct;
-    ImageView ivSearchProduct,ivBackButton;
-    ProductListRecyclerViewAdapter adapter;
-    ToggleButton toggleButton;
-    ImageButton btn;
-
-    JSONArray jsonArray;
-    String[] data = new String[BaseActivity.sampleTestingLimit] ;
-
-    int[] product_images = {R.drawable.infra_bazaar_backhoe,R.drawable.infra_bazaar_crane,R.drawable.infra_bazaar_excavator,R.drawable.infra_bazaar_motorgrader,
-            R.drawable.infra_bazaar_roller,R.drawable.infra_bazaar_tipper,R.drawable.infra_bazaar_transitmixer,R.drawable.infra_bazaar_used};
+    ImageView ivSearchProduct, ivBackButton;
+    ProductListRecyclerViewAdapter productAdapter;
+    String[] demoProductName = new String[sampleTestingLimit];
+    RecyclerView rvProducts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_list);
 
-        etSearchProduct = (EditText)findViewById(R.id.etSearchProduct);
-        ivSearchProduct = (ImageView)findViewById(R.id.ivSearchProduct);
-        ivBackButton = (ImageView)findViewById(R.id.ivBackActivity);
-      //  toggleButton = (ToggleButton)
+        etSearchProduct = (EditText) findViewById(R.id.etSearchProduct);
+        ivSearchProduct = (ImageView) findViewById(R.id.ivSearchProduct);
+        ivBackButton = (ImageView) findViewById(R.id.ivBackActivity);
+        rvProducts = findViewById(R.id.rvProductList);
 
         ivBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openActivity(ProductListActivity.this, LoginActivity.class);
+                closeActivityWithAnimation();
+                //openActivity(ProductListActivity.this, LoginActivity.class);
             }
         });
 
@@ -60,33 +53,77 @@ public class ProductListActivity extends BaseActivity implements ProductListRecy
             actionBar.setHomeAsUpIndicator(R.drawable.ic_back_arrow);
         }
 
-        for(int i=0; i<data.length;i++) {
-            data[i] = String.valueOf(i);
-            DisplayProduct(data);
+        prepareDemoData();
+    }
+
+    private void prepareDemoData() {
+        for (int i = 0; i < demoProductName.length; i++) {
+            demoProductName[i] = String.valueOf(i);
         }
+        if (isTabletDevice()) {
+            rvProducts.setLayoutManager(new GridLayoutManager(this, 3));
+        } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            rvProducts.setLayoutManager(new GridLayoutManager(this, 3));
+        } else {
+            rvProducts.setLayoutManager(new GridLayoutManager(this, 2));
+        }
+        productAdapter = new ProductListRecyclerViewAdapter(this, demoProductName);
+        rvProducts.setAdapter(productAdapter);
     }
 
-    private void DisplayProduct(String[] i) {
+    public class ProductListRecyclerViewAdapter extends RecyclerView.Adapter<ProductListRecyclerViewAdapter.ViewHolder> {
 
-        // Starting of RecycleView
-        RecyclerView.LayoutManager layoutManager;
+        String[] productName;
+        LayoutInflater mInflater;
 
-        // set up the RecyclerView
-        RecyclerView recyclerView = findViewById(R.id.rvProductList);
-        int numberOfColumns = 3;
+        ProductListRecyclerViewAdapter(Context context, String[] data) {
+            this.mInflater = LayoutInflater.from(context);
+            this.productName = data;
+        }
 
-        recyclerView.setHasFixedSize(true);
-        layoutManager = new GridLayoutManager(this, numberOfColumns);
-        recyclerView.setLayoutManager(layoutManager);
+        @Override
 
-        adapter = new ProductListRecyclerViewAdapter(this , data);
-        adapter.setClickListener(ProductListActivity.this);
+        @NonNull
+        public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            View view = mInflater.inflate(R.layout.row_product_grid, parent, false);
+            return new ViewHolder(view);
+        }
 
-        recyclerView.setAdapter(adapter);
-    }
+        // binds the data to the TextView in each cell
+        @Override
+        public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+            holder.tvProductName.setText(productName[position]);
+            if (position % 2 == 0) {
+                holder.ivProductImage.setImageResource(R.drawable.infra_bazaar_backhoe);
+            } else if (position % 3 == 0) {
+                holder.ivProductImage.setImageResource(R.drawable.infra_bazaar_crane);
+            } else {
+                holder.ivProductImage.setImageResource(R.drawable.infra_bazaar_excavator);
+            }
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    toast(productName[position]);
+                }
+            });
+        }
 
-    @Override
-    public void onItemClick(View view, int position) {
-        Toast.makeText(ProductListActivity.this, "You clicked number " + adapter.getItem(position) + ", which is at cell position " + position,Toast.LENGTH_LONG).show();
+        @Override
+        public int getItemCount() {
+            return productName.length;
+        }
+
+        public class ViewHolder extends RecyclerView.ViewHolder {
+            TextView tvProductName;
+            ImageView ivProductImage;
+
+            ViewHolder(View itemView) {
+                super(itemView);
+                tvProductName = itemView.findViewById(R.id.tvProductName);
+                ivProductImage = itemView.findViewById(R.id.ivProductImage);
+            }
+
+        }
+
     }
 }

@@ -28,4 +28,6 @@
     <string name="email_send_on">हम सत्यापन कोड आपकी ईमेल आईडी पर भेज देंगे</string>
     <string name="e_mail">ई-मेल</string>
     <string name="send">भेजें</string>
+    <string name="distance">दूरी</string>
+    <string name="rate">दर</string>
 </resources>

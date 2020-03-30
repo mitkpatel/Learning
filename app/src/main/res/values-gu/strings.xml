@@ -28,4 +28,6 @@
     <string name="email_send_on">અમે ચકાસણી કોડને તમારી ઇમેઇલ આઈડી પર મોકલીશું</string>
     <string name="e_mail">ઇ-મેઇલ</string>
     <string name="send">મોકલો</string>
+    <string name="distance">અંતર</string>
+    <string name="rate">દર</string>
 </resources>

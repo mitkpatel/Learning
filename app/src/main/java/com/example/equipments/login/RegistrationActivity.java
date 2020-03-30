@@ -41,18 +41,5 @@ public class RegistrationActivity extends BaseActivity {
             }
         });
 
-      //  onBackPressed();
     }
 }
-
-
-/*     // for Default ActionBar
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setDisplayShowHomeEnabled(false);
-            actionBar.setDisplayShowTitleEnabled(true);
-            actionBar.setDisplayUseLogoEnabled(false);
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_back_arrow);
-        }
-*/

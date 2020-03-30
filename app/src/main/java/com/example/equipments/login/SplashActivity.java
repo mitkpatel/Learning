@@ -170,7 +170,7 @@ public class SplashActivity extends BaseActivity {
         switch (requestCode) {
             case R_PERM:
                 // if granted then 0 else -1
-                // i have 5 permisson to check so 0,1,2,3,4..
+                // i have 5 permission to check so 0,1,2,3,4..
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED &&
                         grantResults[1] == PackageManager.PERMISSION_GRANTED &&
                         grantResults[2] == PackageManager.PERMISSION_GRANTED &&

@@ -1,5 +1,6 @@
 package com.example.equipments.login;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -44,13 +45,10 @@ public class LoginActivity extends BaseActivity {
         tvForgotPassword = (TextView)findViewById(R.id.tvForgotPassword);
         btnChangeLanguage = (Button) findViewById(R.id.btnChangeLanguage);
 
-       // tvToolbarTitle = (TextView)findViewById(R.id.tv_toolbar_title);
-       // Toolbar toolbarTop = (Toolbar) findViewById(R.id.toolbar);
-    //    TextView mTitle = (TextView) toolbarTop.findViewById(R.id.toolbar_title);
-
         ivLoginLogo.bringToFront();  //To overlap Image on to another View
 
-        //   setSharedPreferences(PREF_SERVER_URL, ServerURL);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle(getResources().getString(R.string.login_activity));
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override

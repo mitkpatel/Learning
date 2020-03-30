@@ -1,4 +1,4 @@
-package com.example.equipments.base;;
+package com.example.equipments.base;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -6,8 +6,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-
-import androidx.appcompat.app.ActionBar;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Build;
@@ -15,6 +13,9 @@ import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.Toast;
 import android.widget.Toolbar;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
@@ -24,11 +25,9 @@ import org.json.JSONObject;
 
 import java.util.Locale;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 public class BaseActivity extends AppCompatActivity implements Constant {
 
-    public static int sampleTestingLimit = 200;
+    public int sampleTestingLimit = 20;
     Toolbar toolbar;
     public static AlertDialog progressDialog;
     protected SharedPreferences sharedPreferences;
@@ -39,11 +38,13 @@ public class BaseActivity extends AppCompatActivity implements Constant {
     public RequestQueue mRequestQueue;
     public ImageLoader mImageLoader;
     ActionBar actionBar;
+    public int orientation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    //    RecycleViewAdapter();
+        //    RecycleViewAdapter();
+        orientation = getResources().getConfiguration().orientation;
     }
 
     /**
@@ -210,38 +211,35 @@ public class BaseActivity extends AppCompatActivity implements Constant {
 
 
     /**
-     * change application language dialog
+     * To change the application language dialog
      */
-    protected void showChangeLanguageDialog(){
+    protected void showChangeLanguageDialog() {
 
-        String[] listItems = {"ગુજરાતી", "हिन्दी", "English"};
+        String[] languageList = {"ગુજરાતી", "हिन्दी", "English"};
         AlertDialog.Builder builder = new AlertDialog.Builder(BaseActivity.this);
         builder.setTitle("Choose Language...");
-        builder.setSingleChoiceItems(listItems,-1, new DialogInterface.OnClickListener() {
-           @Override
-           public void onClick(DialogInterface dialog, int i) {
-               if(i == 0)
-               {
-                   //Gujarati
-                   setLanguage("gu");
-                   recreate();
-               }
-               else if( i== 1){
-                   //Hindi
-                   setLanguage("hi");
-                   recreate();
-               }
-               else if( i == 2)
-               {
-                   //English
-                   setLanguage("en");
-                   recreate();
-               }
-               dialog.dismiss();;
-           }
-       });
-       AlertDialog alertDialog = builder.create();
-       alertDialog.show();
+        builder.setSingleChoiceItems(languageList, -1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+                if (i == 0) {
+                    //Gujarati
+                    setLanguage("gu");
+                    recreate();
+                } else if (i == 1) {
+                    //Hindi
+                    setLanguage("hi");
+                    recreate();
+                } else if (i == 2) {
+                    //English
+                    setLanguage("en");
+                    recreate();
+                }
+                dialog.dismiss();
+                ;
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 
     // To set particular language
@@ -250,14 +248,24 @@ public class BaseActivity extends AppCompatActivity implements Constant {
         locale.setDefault(locale);
         Configuration configuration = new Configuration();
         configuration.locale = locale;
-        getBaseContext().getResources().updateConfiguration(configuration,getBaseContext().getResources().getDisplayMetrics());
+        getBaseContext().getResources().updateConfiguration(configuration, getBaseContext().getResources().getDisplayMetrics());
         //save data to shared preferences
-        setSharedPreferences(PREF_LANGUAGE,lang);
+        setSharedPreferences(PREF_LANGUAGE, lang);
     }
 
-    public void loadLanguage()
-    {
+    public void loadLanguage() {
         String language = getSharedPreferencesValue(PREF_LANGUAGE);
         setLanguage(language);
     }
+
+    /**
+     * To recognize the device is tablet or mobile
+     */
+
+    protected boolean isTabletDevice() {
+        int screenLayout = getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK;
+        boolean isScreenXlarge = (screenLayout == Configuration.SCREENLAYOUT_SIZE_XLARGE);
+        return (isScreenXlarge);
+    }
+
 }

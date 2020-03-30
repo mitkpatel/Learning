@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_margin="10dp"
     android:background="@drawable/product_corner_shape"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:orientation="vertical">
 
     <ImageView
         android:id="@+id/ivProductImage"
@@ -16,13 +16,124 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/colorPrimaryDark"/>
-    <TextView
-        android:id="@+id/tvProductName"
-        android:gravity="center"
-        android:paddingTop="2dp"
-        android:paddingBottom="2dp"
+        android:background="@color/colorPrimaryDark" />
+
+    <RelativeLayout
+        android:id="@+id/ProductDetails"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:orientation="horizontal">
+
+        <!-- Layout for Distance, left side of product-->
+        <RelativeLayout
+            android:id="@+id/distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvDistanceLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:text="@string/distance"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_below="@+id/tvDistanceLabel"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivDistanceLogo"
+                    android:layout_width="18dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/distance_icon"
+                    android:baselineAlignBottom="true"/>
+
+                <TextView
+                    android:id="@+id/tvProductName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="2dp" />
+
+                <TextView
+                    android:id="@+id/tvKilometerLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="2dp"
+                    android:text="km" />
+
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+        <!-- Layout for Distance end here, left side of product-->
+
+        <!-- Layout for Rate, right side of product-->
+        <LinearLayout
+            android:id="@+id/rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:gravity="center"
+            android:layout_alignParentEnd="true"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="7dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvRateLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:text="@string/rate"/>
+
+                <TextView
+                    android:id="@+id/tvRate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_centerInParent="true"
+                    android:text="₹ 10,000"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_below="@+id/tvRateLabel"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_alignParentEnd="true"
+                        android:src="@drawable/tool_tip_icon"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <!-- Layout for Rate end here, right side of product-->
+
+        </LinearLayout>
+
+    </RelativeLayout>
 
 </LinearLayout>

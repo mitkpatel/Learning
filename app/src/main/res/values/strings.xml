@@ -27,4 +27,6 @@
     <string name="email_send_on">We will send to Verification Code Your Email Id</string>
     <string name="e_mail">E-mail</string>
     <string name="send">Send</string>
+    <string name="distance">Distance</string>
+    <string name="rate">Rate</string>
 </resources>
