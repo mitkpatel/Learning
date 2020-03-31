@@ -30,4 +30,5 @@
     <string name="send">भेजें</string>
     <string name="distance">दूरी</string>
     <string name="rate">दर</string>
+    <string name="total">कुल</string>
 </resources>

@@ -111,23 +111,20 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/imagePricePopupLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_below="@+id/tvRateLabel"
                 android:orientation="horizontal">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
                     <ImageView
+                        android:id="@+id/ivPricePopupMenu"
                         android:layout_width="15dp"
                         android:layout_height="15dp"
+                        android:clickable="true"
                         android:layout_alignParentEnd="true"
                         android:src="@drawable/tool_tip_icon"/>
-
-                </LinearLayout>
 
             </LinearLayout>
             <!-- Layout for Rate end here, right side of product-->
