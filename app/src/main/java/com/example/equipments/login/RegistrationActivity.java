@@ -37,7 +37,7 @@ public class RegistrationActivity extends BaseActivity {
         ivCloseActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openActivity(RegistrationActivity.this,LoginActivity.class);
+                closeActivityWithAnimation();
             }
         });
 

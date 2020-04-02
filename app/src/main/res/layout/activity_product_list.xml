@@ -33,7 +33,7 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:id="@+id/ivBackActivity"
+                        android:id="@+id/ivBackProductList"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -134,27 +134,10 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/btnTestingLayout"
+        android:id="@+id/ProductLayoutRecycleView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_below="@+id/searchLayout">
-
-        <Button
-            android:id="@+id/btnTesting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/searchLayout"
-            android:layout_gravity="center"
-            android:text="TESTING"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/rvProductLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btnTestingLayout"
+        android:layout_below="@+id/searchLayout"
         android:layout_marginTop="10dp">
 
         <androidx.recyclerview.widget.RecyclerView

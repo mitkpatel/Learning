@@ -31,4 +31,6 @@
     <string name="distance">दूरी</string>
     <string name="rate">दर</string>
     <string name="total">कुल</string>
+    <string name="login_exit">क्या आप निश्चित रूप से बाहर निकलना चाहते हैं?</string>
+    <string name="place_order">ऑर्डर करो</string>
 </resources>

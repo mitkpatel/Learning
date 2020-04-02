@@ -33,7 +33,7 @@ public class ForgotPasswordActivity extends BaseActivity {
         ivCloseActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openActivity(ForgotPasswordActivity.this,LoginActivity.class);
+                closeActivityWithAnimation();
             }
         });
 

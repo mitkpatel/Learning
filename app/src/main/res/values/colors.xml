@@ -5,4 +5,5 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="background">#D1D2D4</color>
     <color name="white">#fff</color>
+    <color name="slider_background">#F9FAFC</color>
 </resources>

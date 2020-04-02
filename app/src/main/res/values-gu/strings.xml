@@ -31,4 +31,6 @@
     <string name="distance">અંતર</string>
     <string name="rate">દર</string>
     <string name="total">કુલ</string>
+    <string name="login_exit">શું તમે ખરેખર બહાર નીકળવા માંગો છો?</string>
+    <string name="place_order">ઓર્ડર કરો</string>
 </resources>

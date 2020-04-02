@@ -30,4 +30,13 @@
     <string name="distance">Distance</string>
     <string name="rate">Rate</string>
     <string name="total">Total</string>
+    <string name="login_exit">Are you sure you want to exit?</string>
+    <string name="place_order">Place order</string>
+
+    <string-array name="product_detail_label">
+        <item>Body Type</item>
+        <item>Chassis No</item>
+        <item>Color</item>
+    </string-array>
+
 </resources>

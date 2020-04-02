@@ -81,4 +81,24 @@ public class LoginActivity extends BaseActivity {
         });
     }
 
+    // To exit from App with custom message
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.login_exit)
+                .setCancelable(false)
+                .setPositiveButton(R.string.dialog_yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        LoginActivity.this.finish();
+                        System.exit(0);
+                    }
+                })
+                .setNegativeButton(R.string.dialog_no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
 }

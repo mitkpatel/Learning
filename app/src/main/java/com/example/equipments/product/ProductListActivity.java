@@ -1,7 +1,9 @@
 package com.example.equipments.product;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
@@ -18,26 +20,23 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.equipments.R;
 import com.example.equipments.base.BaseActivity;
+import com.example.equipments.login.LoginActivity;
 
 public class ProductListActivity extends BaseActivity {
 
     EditText etSearchProduct;
-    ImageView ivSearchProduct, ivBackButton;
+    ImageView ivSearchProduct, ivCloseActivity;
     ProductListRecyclerViewAdapter productAdapter;
     String[] demoProductName = new String[sampleTestingLimit];
     int[] imagePosition = new int[sampleTestingLimit];
     RecyclerView rvProducts;
-    LinearLayout buttonTestingLayout,imageTestingLayout;
-    Button btnTesting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,48 +45,18 @@ public class ProductListActivity extends BaseActivity {
 
         etSearchProduct = (EditText) findViewById(R.id.etSearchProduct);
         ivSearchProduct = (ImageView) findViewById(R.id.ivSearchProduct);
-        ivBackButton = (ImageView) findViewById(R.id.ivBackActivity);
+        ivCloseActivity = (ImageView) findViewById(R.id.ivBackProductList);
         rvProducts = findViewById(R.id.rvProductList);
-        buttonTestingLayout = (LinearLayout) findViewById(R.id.btnTestingLayout);
-        imageTestingLayout = (LinearLayout) findViewById(R.id.imagePricePopupLayout);
-        btnTesting = (Button) findViewById(R.id.btnTesting);
 
-        ivBackButton.setOnClickListener(new View.OnClickListener() {
+        ivCloseActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 closeActivityWithAnimation();
-                //openActivity(ProductListActivity.this, LoginActivity.class);
-            }
-        });
-
-        btnTesting.setOnTouchListener(new View.OnTouchListener() {
-            @SuppressLint("ClickableViewAccessibility")
-            public boolean onTouch(View v, MotionEvent event) {
-                Log.d("hover", "Bring yor cursor over the button");
-                if(event.getAction()==MotionEvent.ACTION_UP)
-                {
-                    //instantiate the popup.xml layout file
-                    LayoutInflater layoutInflater = (LayoutInflater) ProductListActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                    View customView = layoutInflater.inflate(R.layout.productlist_popup_menu,null);
-
-                    //instantiate popup window
-                    PopupWindow popupWindow = new PopupWindow(customView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
-                    popupWindow.setFocusable(true);
-                    popupWindow.setBackgroundDrawable(new ColorDrawable());
-                    popupWindow.setOutsideTouchable(true);
-
-                    //display the popup window
-                    popupWindow.showAtLocation(v, Gravity.CENTER, 0, 0);
-
-                    return true;
-                }
-
-                return false;
             }
         });
 
         prepareDemoData();
+
     }
 
     private void prepareDemoData() {
@@ -122,7 +91,7 @@ public class ProductListActivity extends BaseActivity {
 
         @NonNull
         public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = mInflater.inflate(R.layout.row_product_grid, parent, false);
+            View view = mInflater.inflate(R.layout.row_product_list_grid, parent, false);
             return new ViewHolder(view);
         }
 
@@ -132,10 +101,19 @@ public class ProductListActivity extends BaseActivity {
 
             holder.ivPricePopupMenu.setTag(new Integer(position));   //To get particular position of item in grid
 
+            // For popupWindow call
             holder.ivPricePopupMenu.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     initiatePopupWindow(v);
+                }
+            });
+
+            //Intent for product details class
+            holder.ivProductImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    openActivity(ProductListActivity.this,ProductDetailActivity.class);
                 }
             });
 
@@ -172,10 +150,12 @@ public class ProductListActivity extends BaseActivity {
             popupWindow.setOutsideTouchable(true);
 
             //display the popup window
-            popupWindow.showAtLocation(buttonTestingLayout,  Gravity.NO_GRAVITY,locateView(view).right,locateView(view).bottom);
+            LinearLayout ivPricePopupLayout = (LinearLayout)findViewById(R.id.imagePricePopupLayout);
+            popupWindow.showAtLocation(ivPricePopupLayout, Gravity.NO_GRAVITY, locateView(view).right, locateView(view).bottom);
           //  popupWindow.showAtLocation(buttonTestingLayout,  Gravity.NO_GRAVITY,locateView(view).top,locateView(view).left);
         }
 
+        //Method which return the position of any view
         public Rect locateView(View v)
         {
             int[] loc_int = imageId;
@@ -221,8 +201,7 @@ public class ProductListActivity extends BaseActivity {
                 super(itemView);
                 tvProductName = itemView.findViewById(R.id.tvProductName);
                 ivProductImage = itemView.findViewById(R.id.ivProductImage);
-                ivPricePopupMenu = itemView.findViewById(R.id.ivPricePopupMenu);
-
+                ivPricePopupMenu = itemView.findViewById(R.id.ivPricePopupMenu);;
             }
 
         }

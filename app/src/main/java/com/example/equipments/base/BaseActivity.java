@@ -10,9 +10,9 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,15 +20,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.example.equipments.R;
+import com.example.equipments.login.SplashActivity;
 
 import org.json.JSONObject;
 
 import java.util.Locale;
+import java.util.Map;
 
 public class BaseActivity extends AppCompatActivity implements Constant {
 
     public int sampleTestingLimit = 20;
-    Toolbar toolbar;
     public static AlertDialog progressDialog;
     protected SharedPreferences sharedPreferences;
     public static String session_id = "";
@@ -37,14 +38,30 @@ public class BaseActivity extends AppCompatActivity implements Constant {
     protected JSONObject requestParams = new JSONObject();
     public RequestQueue mRequestQueue;
     public ImageLoader mImageLoader;
-    ActionBar actionBar;
     public int orientation;
+    private int checkedItem = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //    RecycleViewAdapter();
         orientation = getResources().getConfiguration().orientation;
+    }
+
+    /**
+     * show progress dialog
+     *
+     * @param context
+     */
+    public static void showProgressDialog(Context context) {
+        try {
+            progressDialog = new ProgressDialog(context);
+            progressDialog.setMessage(context.getString(R.string.progress_msg));
+            if (!progressDialog.isShowing())
+                progressDialog.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -81,6 +98,12 @@ public class BaseActivity extends AppCompatActivity implements Constant {
         overridePendingTransition(R.anim.enter_from_left, R.anim.exit_in_right);
         closeActivityWithAnimation();
     }
+
+    //Back Press method with confirmation dialog
+    public void onBackPressed(Activity activity) {
+        logoutFromApp(activity);
+    }
+
 
     public void openActivity(Activity activityName, Class className) {
         startActivity(new Intent(activityName, className));
@@ -142,21 +165,6 @@ public class BaseActivity extends AppCompatActivity implements Constant {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
     }
 
-    /**
-     * show progress dialog
-     *
-     * @param context
-     */
-    public static void showProgressDialog(Context context) {
-        try {
-            progressDialog = new ProgressDialog(context);
-            progressDialog.setMessage(context.getString(R.string.progress_msg));
-            if (!progressDialog.isShowing())
-                progressDialog.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     /**
      * hide progress bar dialog
@@ -209,30 +217,91 @@ public class BaseActivity extends AppCompatActivity implements Constant {
         }).show();
     }
 
+    /**
+     * ask user confirmation for logout from the odoo application
+     *
+     * @param context
+     */
+
+    public void logoutFromApp(final Context context) {
+        new AlertDialog.Builder(BaseActivity.this)
+                .setMessage(getString(R.string.dialog_logout_confirm))
+                .setPositiveButton(R.string.dialog_yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        logout(context);
+                    }
+                }).setNegativeButton(R.string.dialog_no, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        }).show();
+    }
+
+    public void logout(Context context) {
+//        clearSharedPreferences();
+        startActivity(new Intent(context, SplashActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        overridePendingTransition(R.anim.enter_from_right, R.anim.exit_in_left);
+        finish();
+    }
+
+    /**
+     * clear all values from local memory of application
+     */
+    public void clearSharedPreferences() {
+        if (sharedPreferences == null) {
+            sharedPreferences = getSharedPreferences(PREF_TAG, Context.MODE_PRIVATE);
+        }
+        Map<String, ?> allEntries = sharedPreferences.getAll();
+        if (allEntries.containsKey(PREF_USERNAME)) {
+            for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
+                //Log.d("map values", entry.getKey() + ": " + entry.getValue().toString());
+                if (entry.getKey().equalsIgnoreCase(PREF_USERNAME) ||
+                        entry.getKey().equalsIgnoreCase(PREF_PASSWORD) ||
+                        entry.getKey().equalsIgnoreCase(PREF_SERVER_URL_IP) ||
+                        entry.getKey().equalsIgnoreCase(PREF_SERVER_URL_PORT) ||
+                        entry.getKey().equalsIgnoreCase(PREF_DB_NAME)) {
+                    continue;
+                } else {
+                    Log.d("map values", entry.getKey() + ": Removed");
+                    sharedPreferences.edit().remove(entry.getKey()).commit();
+                }
+            }
+        } else {
+            sharedPreferences.edit().clear().commit();
+        }
+    }
 
     /**
      * To change the application language dialog
      */
     protected void showChangeLanguageDialog() {
 
-        String[] languageList = {"ગુજરાતી", "हिन्दी", "English"};
+        final String[] languageList = {"ગુજરાતી", "हिन्दी", "English"};
         AlertDialog.Builder builder = new AlertDialog.Builder(BaseActivity.this);
         builder.setTitle("Choose Language...");
-        builder.setSingleChoiceItems(languageList, -1, new DialogInterface.OnClickListener() {
+
+        builder.setSingleChoiceItems(languageList, checkedItem, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int i) {
-                if (i == 0) {
+                if (languageList[i].equals("ગુજરાતી")) {
                     //Gujarati
                     setLanguage("gu");
                     recreate();
-                } else if (i == 1) {
+                    checkedItem = 0;
+                } else if (languageList[i].equals("हिन्दी")) {
                     //Hindi
                     setLanguage("hi");
                     recreate();
-                } else if (i == 2) {
+                    checkedItem = 1;
+                } else if (languageList[i].equals("English")) {
                     //English
                     setLanguage("en");
                     recreate();
+                    checkedItem = 2;
                 }
                 dialog.dismiss();
                 ;
