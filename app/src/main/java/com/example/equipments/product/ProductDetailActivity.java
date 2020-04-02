@@ -9,12 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.equipments.R;
 import com.example.equipments.base.BaseActivity;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -59,7 +61,8 @@ public class ProductDetailActivity extends BaseActivity {
         ivCloseActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openActivity(ProductDetailActivity.this,ProductListActivity.class);
+              //  openActivity(ProductDetailActivity.this,ProductListActivity.class);
+                closeActivityWithAnimation();
             }
         });
 
@@ -103,9 +106,7 @@ public class ProductDetailActivity extends BaseActivity {
             }
 
             @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
+            public void onPageScrollStateChanged(int state) { }
         });
 
         prepareDemoData();
@@ -173,6 +174,7 @@ public class ProductDetailActivity extends BaseActivity {
             demoProductLimit[i] = String.valueOf(i);
         }
 
+     //   rvProductDetail.setLayoutManager(new GridLayoutManager(this, 2));   //For grid layout
         rvProductDetail.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         detailRecycleViewAdapter = new ProductDetailActivity.ProductDetailRecycleViewAdapter(this, demoProductLimit);
         rvProductDetail.setAdapter(detailRecycleViewAdapter);
@@ -183,10 +185,12 @@ public class ProductDetailActivity extends BaseActivity {
 
         LayoutInflater mInflater;
         String[] dataLength;
+        String[] productDetailLabel;    //For labels of product details
 
         ProductDetailRecycleViewAdapter(Context context, String[] temp){
             this.mInflater = LayoutInflater.from(context);
             this.dataLength = temp;
+            productDetailLabel = context.getResources().getStringArray(R.array.product_detail_label);  //Get details from string.xml file
         }
 
         @NonNull
@@ -198,20 +202,20 @@ public class ProductDetailActivity extends BaseActivity {
 
         @Override
         public void onBindViewHolder(@NonNull ProductDetailRecycleViewAdapter.ViewHolder holder, int position) {
-            holder.tvProductLabel.setText(dataLength[position]);
-            holder.tvProductDetail.setText(dataLength[position]);
+            holder.tvProductDetailLabel.setText(productDetailLabel[position]);
+            holder.tvProductDetailFromServer.setText(dataLength[position]);
         }
 
         @Override
-        public int getItemCount() { return dataLength.length; }
+        public int getItemCount() { return productDetailLabel.length; }
 
         public class ViewHolder extends RecyclerView.ViewHolder {
 
-            TextView tvProductLabel, tvProductDetail;
+            TextView tvProductDetailLabel, tvProductDetailFromServer;
             ViewHolder(View itemView) {
                 super(itemView);
-                tvProductLabel = itemView.findViewById(R.id.tvProductDetailLabel);
-                tvProductDetail = itemView.findViewById(R.id.tvProductDetailFromServer);
+                tvProductDetailLabel = itemView.findViewById(R.id.tvProductDetailLabel);
+                tvProductDetailFromServer = itemView.findViewById(R.id.tvProductDetailFromServer);
             }
 
         }

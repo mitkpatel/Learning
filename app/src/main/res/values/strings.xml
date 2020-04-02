@@ -33,10 +33,60 @@
     <string name="login_exit">Are you sure you want to exit?</string>
     <string name="place_order">Place order</string>
 
+    <!-- String values for ProductDetail page-->
+    <string name="body_type">Body Type</string>
+    <string name="chassis_no">Chassis No</string>
+    <string name="color">Color</string>
+    <string name="cubic_capacity">Cubic Capacity</string>
+    <string name="engine_no">Engine No</string>
+    <string name="fitted_date">Fitted Date</string>
+    <string name="fuel">Fuel</string>
+    <string name="hp">HP</string>
+    <string name="laden_weight">Laden Weight</string>
+    <string name="brand">Brand</string>
+    <string name="model">Model</string>
+    <string name="manufacturing_month">Manufacturing Month</string>
+    <string name="manufacturing_year">Manufacturing Year</string>
+    <string name="no_of_cylinder">No Of Cylinder</string>
+    <string name="owner_serial">Owner Serial</string>
+    <string name="purchase_date">Purchase Date</string>
+    <string name="registration_date">Registration Date</string>
+    <string name="registration_number">Registration Number</string>
+    <string name="rto_code">RTO Code</string>
+    <string name="rto_name">RTO Name</string>
+    <string name="seating_capacity">Seating Capacity</string>
+    <string name="state_code">State Code</string>
+    <string name="unladen_weight">Unladen Weight</string>
+    <string name="vehicle_class">Vehicle Class</string>
+    <string name="wheelbase">Wheelbase</string>
+
+    <!-- Store all values in one array-->
     <string-array name="product_detail_label">
-        <item>Body Type</item>
-        <item>Chassis No</item>
-        <item>Color</item>
+        <item>@string/body_type</item>
+        <item>@string/chassis_no</item>
+        <item>@string/color</item>
+        <item>@string/cubic_capacity</item>
+        <item>@string/engine_no</item>
+        <item>@string/fitted_date</item>
+        <item>@string/fuel</item>
+        <item>@string/hp</item>
+        <item>@string/laden_weight</item>
+        <item>@string/brand</item>
+        <item>@string/model</item>
+        <item>@string/manufacturing_month</item>
+        <item>@string/manufacturing_year</item>
+        <item>@string/no_of_cylinder</item>
+        <item>@string/owner_serial</item>
+        <item>@string/purchase_date</item>
+        <item>@string/registration_date</item>
+        <item>@string/registration_number</item>
+        <item>@string/rto_code</item>
+        <item>@string/rto_name</item>
+        <item>@string/seating_capacity</item>
+        <item>@string/state_code</item>
+        <item>@string/unladen_weight</item>
+        <item>@string/vehicle_class</item>
+        <item>@string/wheelbase</item>
     </string-array>
 
 </resources>

@@ -29,7 +29,7 @@ import java.util.Map;
 
 public class BaseActivity extends AppCompatActivity implements Constant {
 
-    public int sampleTestingLimit = 20;
+    public int sampleTestingLimit = 30;
     public static AlertDialog progressDialog;
     protected SharedPreferences sharedPreferences;
     public static String session_id = "";
