@@ -18,6 +18,8 @@ public class ForgotPasswordActivity extends BaseActivity {
     EditText etEmail;
     Button btnSend;
 
+    String[] a = getResources().getStringArray(R.array.product_detail_label);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
