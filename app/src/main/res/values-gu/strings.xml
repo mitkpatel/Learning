@@ -58,4 +58,5 @@
     <string name="unladen_weight">અનલેડેન વજન</string>
     <string name="vehicle_class">વાહન વર્ગ</string>
     <string name="wheelbase">पहिया आधार</string>
+    <string name="network_service_off">आपका इंटरनेट बंद है !!! इसे चालू करो।</string>
 </resources>

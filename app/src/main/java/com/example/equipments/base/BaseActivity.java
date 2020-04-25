@@ -3,11 +3,14 @@ package com.example.equipments.base;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,7 +23,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.example.equipments.R;
+import com.example.equipments.broadcast.NetworkChangeReceiver;
 import com.example.equipments.login.SplashActivity;
+import com.example.equipments.utils.NetworkService;
+import com.example.equipments.broadcast.*;
 
 import org.json.JSONObject;
 
@@ -40,12 +46,51 @@ public class BaseActivity extends AppCompatActivity implements Constant {
     public ImageLoader mImageLoader;
     public int orientation;
     private int checkedItem = -1;
+    public static AlertDialog networkServiceDialog;
+    private BroadcastReceiver mNetworkReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //    RecycleViewAdapter();
         orientation = getResources().getConfiguration().orientation;
+        mNetworkReceiver = new NetworkChangeReceiver();
+        registerReceiver(mNetworkReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+
+        networkServiceDialog = new AlertDialog.Builder(BaseActivity.this,R.style.AlertDialog)
+                .setMessage(getString(R.string.network_service_off))
+                .setView(R.layout.activity_network)
+                .setPositiveButton("Click here to exit!!!", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finishAffinity();
+                    }
+                })
+                .setCancelable(false).create();
+
+/*        if (!NetworkService.isConnected(BaseActivity.this) && !networkServiceDialog.isShowing()) {
+            networkServiceDialog.show();
+            return;
+        }*/
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+/*        try {
+            if (!NetworkService.isConnected(BaseActivity.this) && !networkServiceDialog.isShowing()) {
+                networkServiceDialog.show();
+                return;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }*/
+    }
+
+    @Override
+    public boolean isDestroyed() {
+        unregisterReceiver(mNetworkReceiver);
+        return super.isDestroyed();
     }
 
     /**

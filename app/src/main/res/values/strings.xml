@@ -59,6 +59,7 @@
     <string name="unladen_weight">Unladen Weight</string>
     <string name="vehicle_class">Vehicle Class</string>
     <string name="wheelbase">Wheelbase</string>
+    <string name="network_service_off">Your internet is off!!! Do you want to exit???</string>
 
     <!-- Store all values in one array-->
     <string-array name="product_detail_label">
